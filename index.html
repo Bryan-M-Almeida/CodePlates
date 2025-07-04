@@ -6,32 +6,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CodePlates</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon" />
 </head>
 
 <body>
-
     <header class="hero">
         <h1>CodePlates</h1>
-        <p>Templates gratuitos prontos pra usar, clonar e customizar</p>
+        <p>Templates de impacto pra devs que querem entregar rápido e bonito</p>
     </header>
 
-    <main class="template-container">
+    <main class="CodePlates">
+        <!-- Apresentação -->
+        <section id="apresentacao">
+            <div class="container-apresentacao reveal">
+                <h2>Sobre o CodePlates</h2>
+                <p>
+                    Uma coleção de templates gratuitos feitos pra devs que querem entregar com estilo, rapidez e
+                    organização. Todos os projetos são feitos com HTML, CSS e JavaScript puro. Sem enrolação, direto ao
+                    ponto.
+                </p>
+                <ul>
+                    <li>✅ Totalmente responsivos</li>
+                    <li>✅ Design moderno e funcional</li>
+                    <li>✅ Visualizar, baixar e acessar o código</li>
+                    <li>✅ Prontos pra usar no seu projeto</li>
+                </ul>
+            </div>
+        </section>
 
-        
+        <!-- Templates -->
+        <section id="templates" class="templates">
+            <div class="filtros">
+                <button data-filtro="todos" class="ativo">Todos</button>
+                <button data-filtro="barbearia">Barbearia</button>
+                <button data-filtro="restaurante">Restaurante</button>
+                <button data-filtro="loja">Loja</button>
+            </div>
+
+            <div class="reveal">
+                <h1>Templates</h1>
+                <p>
+                    <input type="text" id="busca" placeholder="Buscar templates..." />
+                </p>
+                <h3 id="quantidade"></h3>
+            </div>
+            <div class="template-container reveal">
+                <!-- Os cards serão adicionados por JS -->
+            </div>
+        </section>
     </main>
 
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 CodePlates • Todos os direitos reservados</p>
+        <p>&copy; 2025 CodePlates • Desenvolvido por Bryan</p>
+        <div class="socials">
+            <a href="https://github.com/bryan-M-almeida" target="_blank">GitHub</a>
+            <a href="mailto:bryanmacieldealmeida06@gmail.com">Contato</a>
+        </div>
     </footer>
 
-
+    <!-- Modal de Preview -->
     <div class="modal" id="previewModal">
         <div class="modal-content">
-            <span class="close">&times;</span>
-            <iframe src="" frameborder="0" id="iframePreview"></iframe>
+            <button class="close" aria-label="Fechar pré-visualização">&times;</button>
+            <iframe src="" id="iframePreview" title="Prévia do template"></iframe>
         </div>
     </div>
 
+    <!-- Botão Voltar ao Topo -->
+    <button id="btnTopo" title="Voltar ao topo">↑</button>
+
+    <!-- Scripts -->
     <script src="script.js"></script>
 </body>
 
