@@ -111,29 +111,44 @@ setTimeout(() => {
 
 const botoesFiltro = document.querySelectorAll('.filtros button');
 
+let categoriaSelecionada = 'todos';
+
+function aplicarFiltros() {
+    const termo = inputBusca.value.toLowerCase();
+    const cards = document.querySelectorAll('.card');
+    let visiveis = 0;
+
+    cards.forEach(card => {
+        const nome = card.querySelector('h3').textContent.toLowerCase();
+        const catCard = card.getAttribute('data-categoria');
+
+        const combinaCategoria = (categoriaSelecionada === 'todos' || catCard === categoriaSelecionada);
+        const combinaBusca = nome.includes(termo);
+
+        if (combinaCategoria && combinaBusca) {
+            card.style.display = 'block';
+            visiveis++;
+        } else {
+            card.style.display = 'none';
+        }
+    });
+
+    atualizarQuantidade(visiveis);
+}
+
+// Filtro por categoria
 botoesFiltro.forEach(botao => {
     botao.addEventListener('click', () => {
-        document.querySelector('.filtros .ativo').classList.remove('ativo');
+        document.querySelector('.filtros .ativo')?.classList.remove('ativo');
         botao.classList.add('ativo');
 
-        const categoria = botao.getAttribute('data-filtro');
-
-        // agora pegamos os cards no momento do clique
-        const cards = document.querySelectorAll('.card');
-        let visiveis = 0;
-
-        cards.forEach(card => {
-            const catCard = card.getAttribute('data-categoria');
-
-            if (categoria === 'todos' || catCard === categoria) {
-                card.style.display = 'block';
-                visiveis++;
-            } else {
-                card.style.display = 'none';
-            }
-        });
-
-        atualizarQuantidade(visiveis);
+        categoriaSelecionada = botao.getAttribute('data-filtro');
+        aplicarFiltros();
     });
 });
 
+// Busca por nome
+inputBusca.addEventListener('input', aplicarFiltros);
+
+// Inicializar
+document.addEventListener('DOMContentLoaded', aplicarFiltros);
